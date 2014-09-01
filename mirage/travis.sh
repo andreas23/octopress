@@ -3,7 +3,7 @@
 # Edited from https://gist.github.com/avsm/6757425 and @mor1
 # (see post at: http://anil.recoil.org/2013/09/30/travis-and-ocaml.html)
 
-OPAM_DEPENDS="mirage fat-filesystem"
+OPAM_DEPENDS="mirage fat-filesystem ocaml-crunch"
 
 case "$OCAML_VERSION,$OPAM_VERSION" in
 4.01.0,1.1.0) ppa=avsm/ocaml41+opam11 ;;
@@ -13,7 +13,7 @@ esac
 # set up machine
 echo "yes" | sudo add-apt-repository ppa:$ppa
 sudo apt-get update -qq
-sudo apt-get install -qq ocaml ocaml-native-compilers camlp4-extra opam
+sudo apt-get install -qq ocaml ocaml-native-compilers camlp4-extra opam libxen-dev
 
 # set up OPAM
 export OPAMYES=1
