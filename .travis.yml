@@ -1,5 +1,12 @@
 language: c
 before_install:
 - sudo apt-get update
-- sudo apt-get install rbenv ruby-bundler
+- sudo apt-get install ruby-rvm ruby-bundler
+- rvm use 2.0.0 --install --binary --fuzzy
+- export BUNDLE_GEMFILE=$PWD/Gemfile
+- ruby --version
+- rvm --version
+- bundle --version
+- gem --version
+- bundle install --jobs=3 --retry=3
 script: bundle exec rake install; bundle exec rake generate
