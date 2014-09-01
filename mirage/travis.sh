@@ -49,9 +49,9 @@ if [ "$DEPLOY" = "1" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
     XEN_DIR=xen/$TRAVIS_COMMIT
     DEPLOY_IMAGE=mir-www.xen
     FAT_IMAGE=fat1.img
-    DEPLOY_USER=amcdeploy               # for github deployment repo
-    DEPLOY_ACCOUNT=amirmc               # for github deployment repo
-    DEPLOY_REPO=amirmc-www-deploy    # for github deployment repo
+    DEPLOY_USER=github.com              # for github deployment repo
+    DEPLOY_ACCOUNT=andreas23            # for github deployment repo
+    DEPLOY_REPO=andreasdotorg-deploy    # for github deployment repo
 
     # install the tool to deal with private SSH key
     opam install travis-senv
@@ -67,7 +67,7 @@ if [ "$DEPLOY" = "1" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
     echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
 
     # configure travis git details
-    git config --global user.email "travis@amirmc.io" # this doesn't exist
+    git config --global user.email "travis@andreas.org"
     git config --global user.name "Travis Build Bot"
 
     # Do the actual work for deployment
