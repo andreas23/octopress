@@ -7,4 +7,8 @@ before_install:
 - bundle --version
 - gem --version
 - bundle install --jobs=3 --retry=3
-script: bundle exec rake install; bundle exec rake generate
+script: bundle exec rake install; bundle exec rake generate; cd mirage; bash -ex travis.sh
+env:
+  matrix:
+  - OCAML_VERSION=4.01.0 OPAM_VERSION=1.1.0 MIRAGE_BACKEND=xen
+  - OCAML_VERSION=4.01.0 OPAM_VERSION=1.1.0 MIRAGE_BACKEND=unix
