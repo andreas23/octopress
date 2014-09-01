@@ -1,7 +1,7 @@
 language: c
 before_install:
 - sudo apt-get update
-- sudo apt-get install ruby-rvm ruby-bundler
+- sudo apt-get install -y ruby-rvm ruby-bundler
 - rvm use 2.0.0 --install --binary --fuzzy
 - export BUNDLE_GEMFILE=$PWD/Gemfile
 - ruby --version
