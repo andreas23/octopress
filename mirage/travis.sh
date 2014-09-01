@@ -34,7 +34,7 @@ echo Mirage version
 mirage --version
 
 # run the commands to build from here
-FS=fat mirage configure --$MIRAGE_BACKEND
+FS=$MIRAGE_FS mirage configure --$MIRAGE_BACKEND
 make depend
 mirage build
 
@@ -77,11 +77,11 @@ if [ "$DEPLOY" = "1" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
             cd $DEPLOY_REPO
             rm -rf $XEN_DIR     # in case of hash collision, delete previous?
             mkdir -p $XEN_DIR
-            cp ../$DEPLOY_IMAGE ../config.ml $XEN_DIR
-            bzip2 -9 $XEN_DIR/$DEPLOY_IMAGE
+            cp ../$DEPLOY_IMAGE $XEN_DIR
+            gzip $XEN_DIR/$DEPLOY_IMAGE
             if [ -f ../$FAT_IMAGE ]; then
                 cp ../$FAT_IMAGE $XEN_DIR
-                bzip2 -9 $XEN_DIR/$FAT_IMAGE
+                gzip $XEN_DIR/$FAT_IMAGE
             fi
             git pull --rebase   # in case there are changes since cloning
             echo $TRAVIS_COMMIT > xen/latest    # update ref to most recent
