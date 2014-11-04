@@ -39,7 +39,7 @@ module Main (C:CONSOLE) (FS:KV_RO) (S:Cohttp_lwt.Server) = struct
         match rt with
         | "js"   -> "application/javascript"
         | "css"  -> "text/css"
-        | "html" -> "text/html"
+        | "html" -> "text/html; charset=utf-8"
         | "json" -> "application/json"
         | "png"  -> "image/png"
         | "xml"  -> "application/atom+xml"
