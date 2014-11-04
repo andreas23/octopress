@@ -31,6 +31,22 @@ module Main (C:CONSOLE) (FS:KV_RO) (S:Cohttp_lwt.Server) = struct
         (aux (Re_str.(full_split (regexp_string "/") path))))
     in
  
+    let content_type path =
+      let open String in
+      try
+        let idx = String.index path '.' + 1 in
+        let rt = String.sub path idx (String.length path - idx) in
+        match rt with
+        | "js"   -> "application/javascript"
+        | "css"  -> "text/css"
+        | "html" -> "text/html"
+        | "json" -> "application/json"
+        | "png"  -> "image/png"
+        | "xml"  -> "application/atom+xml"
+        | _ -> "text/plain"
+      with _ -> "text/plain"
+    in
+
     (* dispatch non-file URLs *)
     let rec dispatcher = function
       | [] | [""] -> dispatcher ["index.html"] 
@@ -40,7 +56,7 @@ module Main (C:CONSOLE) (FS:KV_RO) (S:Cohttp_lwt.Server) = struct
         try_lwt
           read_fs path
           >>= fun body ->
-          S.respond_string ~status:`OK ~body ()
+          S.respond_string ~headers:(Cohttp.Header.of_list ["Content-type", content_type path]) ~status:`OK ~body ()
         with exn ->
           S.respond_not_found ()
     in
