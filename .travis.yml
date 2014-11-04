@@ -10,7 +10,7 @@ before_install:
 script: bundle exec rake generate; cd mirage; bash -ex travis.sh
 env:
   matrix:
-  - OCAML_VERSION=4.01.0 OPAM_VERSION=1.1.0 MIRAGE_BACKEND=xen MIRAGE_FS=crunch DEPLOY=1
+  - OCAML_VERSION=4.01.0 OPAM_VERSION=1.2.0 MIRAGE_BACKEND=xen MIRAGE_FS=crunch DEPLOY=1
   global:
   - secure: bYtNJttCaRAXbj81E7QMSPhR8jKgbTdaxjh7fhxxQt9Qj8Dt4NtZ2N9ru7iaIFexGiP4FdPSNWwm9M7155wcYHNToZ8o8TrNZaoAZabea8vnqPtQXJ71JrJe+FVZRvHvwIQC9z024h4gslWP25jT1q6ciQPo78hEQAutPWhUzOo=
   - secure: ETSc88W3w2B/q7gXTo0a00d8wmBm+U/spitVPzx4GIeeFbBOcNK+GcwsPLHTgwrWUFSvMAWsj1ePvFC/p88RwnUhD8DpqtnY4yQddpcx3R0yzNqbu2soojU16CdssrLqkhVcSWQ+yGyhmjmzuqc47PMGukhVK/E/5gnXVoZea/8=

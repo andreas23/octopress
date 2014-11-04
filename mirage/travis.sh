@@ -6,7 +6,7 @@
 OPAM_DEPENDS="mirage fat-filesystem crunch"
 
 case "$OCAML_VERSION,$OPAM_VERSION" in
-4.01.0,1.1.0) ppa=avsm/ocaml41+opam11 ;;
+4.01.0,1.2.0) ppa=avsm/ocaml41+opam12 ;;
 *) echo Unknown $OCAML_VERSION,$OPAM_VERSION; exit 1 ;;
 esac
 
@@ -19,6 +19,7 @@ sudo apt-get install -qq ocaml ocaml-native-compilers camlp4-extra opam libxen-d
 export OPAMYES=1
 # export OPAMVERBOSE=1  # uncomment this to get more debug info
 opam init
+opam remote add mirage-dev git://github.com/mirage/mirage-dev
 opam install ${OPAM_DEPENDS}
 eval `opam config env`
 
@@ -34,7 +35,7 @@ echo Mirage version
 mirage --version
 
 # run the commands to build from here
-DHCP=yes FS=$MIRAGE_FS mirage configure --$MIRAGE_BACKEND
+DHCP=no FS=$MIRAGE_FS mirage configure --$MIRAGE_BACKEND
 make depend
 mirage build
 
