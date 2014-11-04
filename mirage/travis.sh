@@ -35,7 +35,7 @@ echo Mirage version
 mirage --version
 
 # run the commands to build from here
-DHCP=no FS=$MIRAGE_FS mirage configure --$MIRAGE_BACKEND
+DHCP= FS=$MIRAGE_FS mirage configure --$MIRAGE_BACKEND
 make depend
 mirage build
 
